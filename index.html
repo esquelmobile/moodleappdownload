@@ -232,6 +232,13 @@
             close.onclick = function () {
                 tip.style.display = 'none';
             }
+        } else {
+            var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+            if (isiOS) {
+                setTimeout(function () {
+                    window.location.href = this.curLanguage.IOSPlist;
+                }, 100);
+            }
         }
     }
 </script>
@@ -265,9 +272,9 @@
             btnDownloadText: '立 即 安 装'
         },
         created: function () {
-                this.curLanguage = this.languageText.zh;
-                document.title = this.languageText.zh.APPName + " " + this.languageText.zh.Download;
-                this.btnDownloadText = this.languageText.zh.DownloadText1;
+            this.curLanguage = this.languageText.zh;
+            document.title = this.languageText.zh.APPName + " " + this.languageText.zh.Download;
+            this.btnDownloadText = this.languageText.zh.DownloadText1;
         },
         methods: {
             download: function () {
