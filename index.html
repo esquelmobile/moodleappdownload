@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Esquel university</title>
+
+    <script src="vue.js"></script>
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "WenQuanYi Micro Hei", sans-serif;
+            font-size: 14px;
+        }
+
+        .content {
+            height: 100%;
+            overflow: auto;
+        }
+
+        .logo {
+            background-image: url(bg.jpg);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            height: 170px;
+            padding-top: 20px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .logo>div {
+            font-size: 16px;
+        }
+
+        .image-display>img {
+            float: left;
+            display: block;
+            width: 19%;
+            height: 240px;
+            margin-left: 4px;
+            box-shadow: lightgrey 0em 0.2em 0.2em;
+        }
+
+        .picture-Preview {
+            overflow-y: hidden;
+            overflow-x: auto;
+        }
+
+        .image-display {
+            width: 660px;
+            overflow: auto;
+            padding: 5px 0;
+        }
+
+        .image-display:after {
+            clear: both;
+            content: ' ';
+            display: block;
+        }
+
+        .attribute {
+            padding: 10px 16px;
+            border-bottom: 1px solid gainsboro;
+        }
+
+        .introduction {
+            padding: 10px 16px;
+
+        }
+
+        .footer {
+            height: 10%;
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .footer button {
+            font-size: 16px;
+            background: #a4a7aa;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            margin-top: 10px;
+            min-width: 240px;
+        }
+
+        .btnSetup {
+            height: 10%;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btnSetup button {
+            font-size: 16px;
+            background: rgb(236, 113, 12);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            margin-top: 10px;
+            min-width: 160px;
+        }
+
+        #weiXin {
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: rgba(0, 0, 0, 0.8);
+            filter: alpha(opacity=80);
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+            text-align: center;
+            padding-top: 10px;
+            display: none;
+        }
+
+        .shadow {
+            text-shadow: black 0.05em 0.05em 0.05em
+        }
+
+        #weiXin>img {
+            width: 95%;
+        }
+
+        #weixin-tip {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: rgba(0, 0, 0, 0.8);
+            filter: alpha(opacity=80);
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+        }
+
+        #weixin-tip p {
+            text-align: center;
+            margin-top: 10%;
+            padding: 0 5%;
+            position: relative;
+        }
+
+        #weixin-tip .close {
+            display: none;
+            color: #fff;
+            padding: 5px;
+            font: bold 20px/24px simsun;
+            text-shadow: 0 1px 0 #ddd;
+            position: absolute;
+            top: 0;
+            left: 5%;
+        }
+
+        #weixin-tip .desc {
+            color: #fff;
+            padding: 1rem 1rem 0 2rem;
+            font-size: 1.6rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div id="weixin-tip">
+            <p><img src="live_weixin.png" width="100%" /><span id="close" class="close">×</span>
+                <div class="weixin-tip desc">
+                    <span style="color: red;">① </span>{{curLanguage.WeixinTip1}}<br /><br />
+                    <span style="color: red;">② </span>{{curLanguage.WeixinTip2}}
+                </div>
+            </p>
+        </div>
+        <div class="content">
+            <div class="logo">
+                <img src="logo.png" alt="" width="20%" style="border-radius: 0.8rem;background-color: white">
+                <div class="shadow">{{curLanguage.APPName}}</div>
+                <div class="btnSetup">
+                    <button v-on:click='download()'>{{btnDownloadText}}</button>
+                </div>
+            </div>
+
+            <div class="picture-Preview">
+                <div class="image-display">
+                    <img src="01.jpg" alt="">
+                    <img src="02.jpg" alt="">
+                    <img src="03.jpg" alt="">
+                    <img src="04.jpg" alt="">
+                    <img src="05.jpg" alt="">
+                </div>
+            </div>
+            <div class="attribute">
+                <div>{{curLanguage.AppTypeText}}: {{curLanguage.AppTypeValue}}</div>
+                <div>{{curLanguage.Size}}: 17M</div>
+                <div>{{curLanguage.Version}}: 3.8.0</div>
+                <div>{{curLanguage.Copyright}}: {{curLanguage.CompanyName}}</div>
+            </div>
+            <div class="introduction">
+                <h3>{{curLanguage.SummaryText}}</h3>
+                <div> {{curLanguage.SummaryValue}}</div>
+            </div>
+            <!-- <div class="introduction">
+            <h3>更新日志</h3>
+            <div>1.累积更新</div>
+        </div> -->
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+<script>
+    window.onload = function () {
+        var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight; //兼容IOS，不需要的可以去掉
+
+        var tip = document.getElementById('weixin-tip');
+        var close = document.getElementById('close');
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            tip.style.height = winHeight + 'px';
+            tip.style.display = 'block';
+
+            close.onclick = function () {
+                tip.style.display = 'none';
+            }
+        }
+    }
+</script>
+<script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            languageText: {
+                zh: {
+                    "APPName": "溢达大学",
+                    "Download": "下载",
+                    "DownloadText1": "立 即 安 装",
+                    "DownloadText1_BETA": "立即安装(内测版)",
+                    "DownloadText1_SIT": "立即安装(测试环境)",
+                    "DownloadText2": "准 备 下 载 中...",
+                    "DownloadText_IOS": "点击安装后请按Home键在桌面查看",
+                    "AppTypeText": "类型",
+                    "AppTypeValue": "服务 学习 工具",
+                    "Size": "大小",
+                    "Version": "版本",
+                    "Copyright": "所属",
+                    "CompanyName": "溢达集团纺织有限公司",
+                    "SummaryText": "应用介绍",
+                    "SummaryValue": "溢达大学在线学习平台",
+                    "WeixinTip1": "点击右上角的“...”按钮",
+                    "WeixinTip2": "选择在“浏览器”中打开",
+                    IOSPlist: "https://apps.apple.com/us/app/moodle/id633359593 "
+                }
+            },
+            curLanguage: {},
+            btnDownloadText: '立 即 安 装'
+        },
+        created: function () {
+                this.curLanguage = this.languageText.zh;
+                document.title = this.languageText.zh.APPName + " " + this.languageText.zh.Download;
+                this.btnDownloadText = this.languageText.zh.DownloadText1;
+        },
+        methods: {
+            download: function () {
+                this.btnDownloadText = this.curLanguage.DownloadText2;
+                var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+                console.log(isiOS);
+                if (isiOS) {
+                    window.location.href = this.curLanguage.IOSPlist;
+                    setTimeout(function () {
+                        app.$data.btnDownloadText = app.$data.curLanguage.DownloadText_IOS;
+                    }, 2000);
+                } else {
+                    window.location.href = "https://edininghall.oss-cn-shenzhen.aliyuncs.com/moodle/moodle.apk";
+                    setTimeout(function () {
+                        app.$data.btnDownloadText = app.$data.curLanguage.DownloadText1;
+                    }, 4000);
+                }
+            }
+        }
+    })
+</script>
