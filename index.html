@@ -225,7 +225,7 @@
     alert(isiOS);
     if (isiOS) {
         setTimeout(function () {
-            window.location.href = this.curLanguage.IOSPlist;
+            window.location.href = 'https://apps.apple.com/us/app/moodle/id633359593';
         }, 100);
     }
     alert(isiOS);
@@ -271,8 +271,7 @@
                     "SummaryText": "应用介绍",
                     "SummaryValue": "溢达大学在线学习平台",
                     "WeixinTip1": "点击右上角的“...”按钮",
-                    "WeixinTip2": "选择在“浏览器”中打开",
-                    IOSPlist: "https://apps.apple.com/us/app/moodle/id633359593 "
+                    "WeixinTip2": "选择在“浏览器”中打开"
                 }
             },
             curLanguage: {},
@@ -287,7 +286,7 @@
             download: function () {
                 this.btnDownloadText = this.curLanguage.DownloadText2;
                 if (isiOS) {
-                    window.location.href = this.curLanguage.IOSPlist;
+                    window.location.href = 'https://apps.apple.com/us/app/moodle/id633359593';
                 } else {
                     window.location.href = "https://edininghall.oss-cn-shenzhen.aliyuncs.com/moodle/moodle.apk";
                 }
