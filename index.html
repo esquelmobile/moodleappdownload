@@ -219,13 +219,14 @@
 </html>
 
 <script>
+    var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+    if (isiOS) {
+        setTimeout(function () {
+            window.location.href = this.curLanguage.IOSPlist;
+        }, 100);
+    }
     window.onload = function () {
-        var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-        if (isiOS) {
-            setTimeout(function () {
-                window.location.href = this.curLanguage.IOSPlist;
-            }, 100);
-        } else {
+        if (!isiOS) {
             var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight; //兼容IOS，不需要的可以去掉
 
             var tip = document.getElementById('weixin-tip');
@@ -285,9 +286,9 @@
                 console.log(isiOS);
                 if (isiOS) {
                     window.location.href = this.curLanguage.IOSPlist;
-                    setTimeout(function () {
-                        app.$data.btnDownloadText = app.$data.curLanguage.DownloadText_IOS;
-                    }, 2000);
+                    // setTimeout(function () {
+                    //     app.$data.btnDownloadText = app.$data.curLanguage.DownloadText_IOS;
+                    // }, 2000);
                 } else {
                     window.location.href = "https://edininghall.oss-cn-shenzhen.aliyuncs.com/moodle/moodle.apk";
                     setTimeout(function () {
