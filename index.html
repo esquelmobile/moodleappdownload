@@ -220,15 +220,13 @@
 
 <script>
     var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-    alert(navigator.userAgent);
-    
-    alert(isiOS);
+
     if (isiOS) {
+    alert(isiOS);
         //setTimeout(function () {
             window.location.href = 'https://apps.apple.com/us/app/moodle/id633359593';
         //}, 100);
     }
-    alert(isiOS);
     window.onload = function () {
         if (!isiOS) {
             var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight; //兼容IOS，不需要的可以去掉
