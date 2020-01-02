@@ -220,11 +220,15 @@
 
 <script>
     var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+    alert(navigator.userAgent);
+    
+    alert(isiOS);
     if (isiOS) {
         setTimeout(function () {
             window.location.href = this.curLanguage.IOSPlist;
         }, 100);
     }
+    alert(isiOS);
     window.onload = function () {
         if (!isiOS) {
             var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight; //兼容IOS，不需要的可以去掉
@@ -282,19 +286,14 @@
         methods: {
             download: function () {
                 this.btnDownloadText = this.curLanguage.DownloadText2;
-                var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-                console.log(isiOS);
                 if (isiOS) {
                     window.location.href = this.curLanguage.IOSPlist;
-                    // setTimeout(function () {
-                    //     app.$data.btnDownloadText = app.$data.curLanguage.DownloadText_IOS;
-                    // }, 2000);
                 } else {
                     window.location.href = "https://edininghall.oss-cn-shenzhen.aliyuncs.com/moodle/moodle.apk";
-                    setTimeout(function () {
-                        app.$data.btnDownloadText = app.$data.curLanguage.DownloadText1;
-                    }, 4000);
                 }
+                setTimeout(function () {
+                    app.$data.btnDownloadText = app.$data.curLanguage.DownloadText1;
+                }, 4000);
             }
         }
     })
