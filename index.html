@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Esquel university</title>
-
+    <script>
+        var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+        if (isiOS) window.location.href = 'https://apps.apple.com/us/app/moodle/id633359593';
+    </script>
     <script src="vue.js"></script>
     <style type="text/css">
         html,
@@ -219,14 +222,6 @@
 </html>
 
 <script>
-    var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-
-    if (isiOS) {
-    alert(isiOS);
-        //setTimeout(function () {
-            window.location.href = 'https://apps.apple.com/us/app/moodle/id633359593';
-        //}, 100);
-    }
     window.onload = function () {
         if (!isiOS) {
             var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight; //兼容IOS，不需要的可以去掉
