@@ -307,6 +307,8 @@
         methods: {
             download: function () {
                 this.btnDownloadText = this.curLanguage.DownloadText2;
+                var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+                
                 if (isiOS) {
                     window.location.href = 'https://apps.apple.com/us/app/moodle/id633359593';
                 } else {
