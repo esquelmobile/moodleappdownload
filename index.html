@@ -19,18 +19,18 @@
             font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "WenQuanYi Micro Hei", sans-serif;
             font-size: 14px;
         }
-
+        
         .content {
             height: 100%;
             overflow: auto;
         }
-
+        
         div#preloader {
             /*background: linear-gradient(#003dbc, #2283f9);#1f91f3; url("pageloading.gif") no-repeat scroll center center;*/
-            background-image: url("esquel.png"),linear-gradient(#003dbc, #2283f9);
-            background-repeat: no-repeat,no-repeat;
-            background-position: right bottom,center center;
-            background-size:20%,auto;
+            background-image: url("esquel.png"), linear-gradient(#003dbc, #2283f9);
+            background-repeat: no-repeat, no-repeat;
+            background-position: right bottom, center center;
+            background-size: 20%, auto;
             height: 100%;
             left: 0;
             overflow: visible;
@@ -47,7 +47,7 @@
             font-style: italic;
             font-size: 20px;
         }
-
+        
         .logo {
             background-image: url(bg.jpg);
             background-size: 100%;
@@ -57,11 +57,11 @@
             color: #fff;
             text-align: center;
         }
-
+        
         .logo>div {
             font-size: 16px;
         }
-
+        
         .image-display>img {
             float: left;
             display: block;
@@ -70,34 +70,33 @@
             margin-left: 4px;
             box-shadow: lightgrey 0em 0.2em 0.2em;
         }
-
+        
         .picture-Preview {
             overflow-y: hidden;
             overflow-x: auto;
         }
-
+        
         .image-display {
             width: 660px;
             overflow: auto;
             padding: 5px 0;
         }
-
+        
         .image-display:after {
             clear: both;
             content: ' ';
             display: block;
         }
-
+        
         .attribute {
             padding: 10px 16px;
             border-bottom: 1px solid gainsboro;
         }
-
+        
         .introduction {
             padding: 10px 16px;
-
         }
-
+        
         .footer {
             height: 10%;
             width: 100%;
@@ -105,7 +104,7 @@
             position: fixed;
             bottom: 0;
         }
-
+        
         .footer button {
             font-size: 16px;
             background: #a4a7aa;
@@ -116,13 +115,13 @@
             margin-top: 10px;
             min-width: 240px;
         }
-
+        
         .btnSetup {
             height: 10%;
             width: 100%;
             text-align: center;
         }
-
+        
         .btnSetup button {
             font-size: 16px;
             background: rgb(236, 113, 12);
@@ -133,7 +132,7 @@
             margin-top: 10px;
             min-width: 160px;
         }
-
+        
         #weiXin {
             position: fixed;
             left: 0;
@@ -147,15 +146,15 @@
             padding-top: 10px;
             display: none;
         }
-
+        
         .shadow {
             text-shadow: black 0.05em 0.05em 0.05em
         }
-
+        
         #weiXin>img {
             width: 95%;
         }
-
+        
         #weixin-tip {
             display: none;
             position: fixed;
@@ -167,14 +166,14 @@
             height: 100%;
             z-index: 100;
         }
-
+        
         #weixin-tip p {
             text-align: center;
             margin-top: 10%;
             padding: 0 5%;
             position: relative;
         }
-
+        
         #weixin-tip .close {
             display: none;
             color: #fff;
@@ -185,7 +184,7 @@
             top: 0;
             left: 5%;
         }
-
+        
         #weixin-tip .desc {
             color: #fff;
             padding: 1rem 1rem 0 2rem;
@@ -197,7 +196,13 @@
 
 <body>
     <div id="app">
-        <div id="preloader" v-if="showPreLoader">Loading...</div>
+        <div id="preloader" v-if="showPreLoader">
+            <noscript>
+            <p style="position:absolute;left:0;top:20px;padding: 10px;text-align:center;color: #ff0000;font-style: normal;">
+                Error: JavaScript is disabled in your browser, please enable it first.<br />
+                <br />出错了:您的浏览器已禁用了JavaScript,请先启用它。
+            </p>
+        </noscript>Loading...</div>
         <div id="weixin-tip">
             <p><img src="live_weixin.png" width="100%" /><span id="close" class="close">×</span>
                 <div class="weixin-tip desc">
@@ -273,22 +278,22 @@
             },
             curLanguage: {},
             btnDownloadText: '立 即 安 装',
-            showPreLoader:true,
+            showPreLoader: true,
         },
-        created: function () {
+        created: function() {
             this.curLanguage = this.languageText.zh;
             document.title = this.languageText.zh.APPName + " " + this.languageText.zh.Download;
             this.btnDownloadText = this.languageText.zh.DownloadText1;
 
-            
-            window.onload =  ()=> {
-                this.showPreLoader=false;
+
+            window.onload = () => {
+                this.showPreLoader = false;
                 var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-                
-                
+
+
                 if (isiOS) {
                     //this.download();
-                }else{
+                } else {
                     var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight; //兼容IOS，不需要的可以去掉
 
                     var tip = document.getElementById('weixin-tip');
@@ -298,7 +303,7 @@
                         tip.style.height = winHeight + 'px';
                         tip.style.display = 'block';
 
-                        close.onclick = function () {
+                        close.onclick = function() {
                             tip.style.display = 'none';
                         }
                     }
@@ -308,18 +313,18 @@
             }
         },
         methods: {
-            download: function () {
+            download: function() {
                 var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-                
+
                 if (isiOS) {
                     window.location.href = 'https://apps.apple.com/us/app/moodle/id633359593';
                 } else {
                     this.btnDownloadText = this.curLanguage.DownloadText2;
                     window.location.href = "https://edininghall.oss-cn-shenzhen.aliyuncs.com/moodle/moodle.apk";
-               
-                    setTimeout(function () {
+
+                    setTimeout(function() {
                         app.$data.btnDownloadText = app.$data.curLanguage.DownloadText1;
-                    }, 4000); 
+                    }, 4000);
                 }
             }
         }
